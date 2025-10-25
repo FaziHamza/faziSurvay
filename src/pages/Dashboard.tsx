@@ -1,8 +1,9 @@
 import { useNavigate } from 'react-router-dom';
-import { Palette, Upload, FileText, Eye, TrendingUp, Users, Calendar, Database } from 'lucide-react';
+import { Palette, Upload, FileText, Eye, TrendingUp, Users, Calendar, Database, Building2 } from 'lucide-react';
 import { storage } from '../lib/storage';
 import { auth } from '../lib/auth';
 import { DemoGuide } from '../components/DemoGuide';
+import { multiSchoolStorage } from '../lib/multiSchoolStorage';
 
 export function Dashboard() {
   const navigate = useNavigate();
@@ -16,7 +17,17 @@ export function Dashboard() {
   const draftSurveys = surveys.filter(s => s.status === 'draft');
   const recentResponses = responses.slice(-5).reverse();
 
+  const schools = multiSchoolStorage.getAllSchools();
+
   const adminCards = [
+    {
+      title: 'School Management',
+      description: 'Create and manage multiple schools',
+      icon: Building2,
+      color: '#ec4899',
+      path: '/schools',
+      stats: `${schools.length} ${schools.length === 1 ? 'school' : 'schools'}`,
+    },
     {
       title: 'Branding',
       description: 'Customize portal appearance',

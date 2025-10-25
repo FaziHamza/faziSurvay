@@ -98,7 +98,28 @@ Welcome to the School Portal MVP! This is a fully functional, demo-ready applica
 - Explain import functionality
 - Show the "Clear All Data" option (don't click it!)
 
-### 10. Smooth Navigation Demo (1 minute)
+### 10. Multi-School Management (3 minutes)
+**As Admin**
+
+- Navigate to **School Management** page
+- Show the list of existing schools
+- Click "Create School" button
+- Fill in details for a new school:
+  - Name: "Demo Academy"
+  - Tagline: "Innovation in Learning"
+  - Choose colors and template
+- Save the new school
+- Show both schools in the list
+- Use the **School Switcher** in the navbar
+- Switch between schools
+- Show how data is isolated per school
+- Each school has its own:
+  - Surveys
+  - Files
+  - Responses
+  - Branding
+
+### 11. Smooth Navigation Demo (1 minute)
 - Show the sticky navigation bar
 - Demonstrate mobile responsive menu
 - Switch between pages smoothly
@@ -106,11 +127,20 @@ Welcome to the School Portal MVP! This is a fully functional, demo-ready applica
 
 ## ✨ Key Features to Highlight
 
+### Multi-School Management
+- ✅ Create unlimited schools
+- ✅ Each school has isolated data
+- ✅ Switch between schools instantly
+- ✅ Edit and delete schools
+- ✅ Custom branding per school
+- ✅ Independent surveys, files, and responses
+
 ### Local Storage
 - **Everything persists** in the browser
 - No database or backend required
 - Data survives page refreshes
 - Export/import functionality
+- School-specific data isolation
 
 ### Branding
 - ✅ Custom colors (6 presets)
@@ -146,10 +176,11 @@ Welcome to the School Portal MVP! This is a fully functional, demo-ready applica
 ## 📊 Demo Data Included
 
 The application comes pre-loaded with:
+- 1 default school (Riverside High School)
 - 3 surveys (2 published, 1 draft)
 - 5 files (images and PDFs)
 - 4 sample survey responses
-- 1 configured school (Riverside High School)
+- Support for unlimited additional schools
 
 ## 🎨 UX/UI Highlights
 
@@ -172,11 +203,15 @@ The application comes pre-loaded with:
 ## 💾 Data Persistence
 
 All data is stored in `localStorage`:
-- `school_data` - Branding and school info
-- `surveys_data` - All surveys
-- `files_data` - Uploaded files (base64)
-- `survey_responses` - All survey submissions
+- `schools_list` - List of all schools
+- `active_school_id` - Currently active school
+- `school_data_{schoolId}` - School-specific branding
+- `surveys_data_{schoolId}` - School-specific surveys
+- `files_data_{schoolId}` - School-specific files
+- `survey_responses_{schoolId}` - School-specific responses
 - `auth_token` - User session
+
+Each school has completely isolated data storage.
 
 ## 🚀 Production Ready Features
 
@@ -200,31 +235,37 @@ All data is stored in `localStorage`:
    - Different permissions for each
    - Secure and organized
 
-3. **"Full customization for each school"**
+3. **"Multi-school management system"**
+   - System admin can create multiple schools
+   - Each school is completely isolated
+   - Switch between schools instantly
+   - Perfect for school districts
+
+4. **"Full customization for each school"**
    - Upload their logo
    - Choose their colors
    - Set their identity
 
-4. **"Anonymous feedback capability"**
+5. **"Anonymous feedback capability"**
    - Encourages honest responses
    - Respects user privacy
    - Still tracks submission data
 
-5. **"Data export for analysis"**
+6. **"Data export for analysis"**
    - Download all data as JSON
    - Import to other systems
    - Backup and restore
 
-6. **"Demo ready and polished"**
+7. **"Demo ready and polished"**
    - Professional UI/UX
    - Smooth interactions
    - Production-quality code
 
 ## 🎥 Estimated Demo Time
 
-- Quick demo: 10 minutes
-- Comprehensive demo: 20 minutes
-- Full feature walkthrough: 30 minutes
+- Quick demo: 12 minutes
+- Comprehensive demo: 23 minutes
+- Full feature walkthrough: 35 minutes
 
 ## 🐛 Known Limitations (By Design)
 

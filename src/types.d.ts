@@ -14,6 +14,7 @@ export interface AuthToken {
 }
 
 export interface School {
+  id: string;
   name: string;
   logo: string;
   primaryColor: string;
@@ -21,6 +22,7 @@ export interface School {
   tagline: string;
   template: 'modern' | 'classic' | 'minimal' | 'vibrant';
   font: 'inter' | 'roboto' | 'poppins' | 'playfair';
+  createdAt: string;
 }
 
 export interface Survey {

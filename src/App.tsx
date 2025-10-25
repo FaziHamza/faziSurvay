@@ -4,6 +4,7 @@ import { ProtectedRoute } from './components/ProtectedRoute';
 import { Login } from './pages/Login';
 import { Dashboard } from './pages/Dashboard';
 import { AdminBranding } from './pages/AdminBranding';
+import { SchoolManagement } from './pages/SchoolManagement';
 import { Uploads } from './pages/Uploads';
 import { SurveyBuilder } from './pages/SurveyBuilder';
 import { PreviewPortal } from './pages/PreviewPortal';
@@ -41,6 +42,14 @@ function App() {
                     element={
                       <ProtectedRoute allowedRoles={['admin', 'teacher', 'viewer']}>
                         <Dashboard />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/schools"
+                    element={
+                      <ProtectedRoute allowedRoles={['admin']}>
+                        <SchoolManagement />
                       </ProtectedRoute>
                     }
                   />

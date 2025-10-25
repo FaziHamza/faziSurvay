@@ -1,5 +1,11 @@
 import type { School, Survey, UploadedFile, SurveyResponse } from '../types';
 import { mockSchool, mockSurveys, mockFiles, mockResponses } from '../data/mockData';
+import { multiSchoolStorage } from './multiSchoolStorage';
+
+function getSchoolKey(key: string): string {
+  const schoolId = multiSchoolStorage.getActiveSchoolId();
+  return `${key}_${schoolId}`;
+}
 
 const SCHOOL_KEY = 'school_data';
 const SURVEYS_KEY = 'surveys_data';
@@ -7,17 +13,23 @@ const FILES_KEY = 'files_data';
 const RESPONSES_KEY = 'survey_responses';
 
 function initializeStorage() {
-  if (!localStorage.getItem(SCHOOL_KEY)) {
-    localStorage.setItem(SCHOOL_KEY, JSON.stringify(mockSchool));
+  const schoolKey = getSchoolKey(SCHOOL_KEY);
+  const surveysKey = getSchoolKey(SURVEYS_KEY);
+  const filesKey = getSchoolKey(FILES_KEY);
+  const responsesKey = getSchoolKey(RESPONSES_KEY);
+
+  if (!localStorage.getItem(schoolKey)) {
+    const activeSchool = multiSchoolStorage.getActiveSchool();
+    localStorage.setItem(schoolKey, JSON.stringify(activeSchool));
   }
-  if (!localStorage.getItem(SURVEYS_KEY)) {
-    localStorage.setItem(SURVEYS_KEY, JSON.stringify(mockSurveys));
+  if (!localStorage.getItem(surveysKey)) {
+    localStorage.setItem(surveysKey, JSON.stringify(mockSurveys));
   }
-  if (!localStorage.getItem(FILES_KEY)) {
-    localStorage.setItem(FILES_KEY, JSON.stringify(mockFiles));
+  if (!localStorage.getItem(filesKey)) {
+    localStorage.setItem(filesKey, JSON.stringify(mockFiles));
   }
-  if (!localStorage.getItem(RESPONSES_KEY)) {
-    localStorage.setItem(RESPONSES_KEY, JSON.stringify(mockResponses));
+  if (!localStorage.getItem(responsesKey)) {
+    localStorage.setItem(responsesKey, JSON.stringify(mockResponses));
   }
 }
 
@@ -25,21 +37,23 @@ initializeStorage();
 
 export const storage = {
   getSchool: (): School => {
-    const data = localStorage.getItem(SCHOOL_KEY);
-    return data ? JSON.parse(data) : mockSchool;
+    const activeSchool = multiSchoolStorage.getActiveSchool();
+    const data = localStorage.getItem(getSchoolKey(SCHOOL_KEY));
+    return data ? JSON.parse(data) : activeSchool;
   },
 
   saveSchool: (school: School): void => {
-    localStorage.setItem(SCHOOL_KEY, JSON.stringify(school));
+    localStorage.setItem(getSchoolKey(SCHOOL_KEY), JSON.stringify(school));
+    multiSchoolStorage.updateSchool(school.id, school);
   },
 
   getSurveys: (): Survey[] => {
-    const data = localStorage.getItem(SURVEYS_KEY);
+    const data = localStorage.getItem(getSchoolKey(SURVEYS_KEY));
     return data ? JSON.parse(data) : mockSurveys;
   },
 
   saveSurveys: (surveys: Survey[]): void => {
-    localStorage.setItem(SURVEYS_KEY, JSON.stringify(surveys));
+    localStorage.setItem(getSchoolKey(SURVEYS_KEY), JSON.stringify(surveys));
   },
 
   addSurvey: (survey: Survey): void => {
@@ -64,12 +78,12 @@ export const storage = {
   },
 
   getFiles: (): UploadedFile[] => {
-    const data = localStorage.getItem(FILES_KEY);
+    const data = localStorage.getItem(getSchoolKey(FILES_KEY));
     return data ? JSON.parse(data) : mockFiles;
   },
 
   saveFiles: (files: UploadedFile[]): void => {
-    localStorage.setItem(FILES_KEY, JSON.stringify(files));
+    localStorage.setItem(getSchoolKey(FILES_KEY), JSON.stringify(files));
   },
 
   addFile: (file: UploadedFile): void => {
@@ -85,12 +99,12 @@ export const storage = {
   },
 
   getResponses: (): SurveyResponse[] => {
-    const data = localStorage.getItem(RESPONSES_KEY);
+    const data = localStorage.getItem(getSchoolKey(RESPONSES_KEY));
     return data ? JSON.parse(data) : [];
   },
 
   saveResponses: (responses: SurveyResponse[]): void => {
-    localStorage.setItem(RESPONSES_KEY, JSON.stringify(responses));
+    localStorage.setItem(getSchoolKey(RESPONSES_KEY), JSON.stringify(responses));
   },
 
   addResponse: (response: SurveyResponse): void => {

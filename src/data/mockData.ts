@@ -1,6 +1,7 @@
 import type { School, Survey, UploadedFile, SurveyResponse } from '../types';
 
 export const mockSchool: School = {
+  id: 'school-1',
   name: 'Riverside High School',
   logo: 'https://images.pexels.com/photos/207662/pexels-photo-207662.jpeg?auto=compress&cs=tinysrgb&w=200',
   primaryColor: '#1e40af',
@@ -8,6 +9,7 @@ export const mockSchool: School = {
   tagline: 'Excellence in Education Since 1985',
   template: 'modern',
   font: 'inter',
+  createdAt: '2025-10-01T10:00:00Z',
 };
 
 export const mockSurveys: Survey[] = [

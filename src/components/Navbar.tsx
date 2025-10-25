@@ -1,8 +1,9 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Palette, Upload, FileText, Eye, LogOut, User, Menu, X, Home, Database } from 'lucide-react';
+import { Palette, Upload, FileText, Eye, LogOut, User, Menu, X, Home, Database, Building2 } from 'lucide-react';
 import { useState } from 'react';
 import { storage } from '../lib/storage';
 import { auth } from '../lib/auth';
+import { SchoolSwitcher } from './SchoolSwitcher';
 import clsx from 'clsx';
 
 export function Navbar() {
@@ -14,6 +15,7 @@ export function Navbar() {
 
   const navItems = [
     { path: '/dashboard', label: 'Dashboard', icon: Home, roles: ['admin', 'teacher', 'viewer'] },
+    { path: '/schools', label: 'Schools', icon: Building2, roles: ['admin'] },
     { path: '/admin', label: 'Branding', icon: Palette, roles: ['admin'] },
     { path: '/uploads', label: 'Uploads', icon: Upload, roles: ['admin', 'teacher'] },
     { path: '/survey-builder', label: 'Surveys', icon: FileText, roles: ['admin', 'teacher'] },
@@ -65,6 +67,7 @@ export function Navbar() {
           <div className="flex items-center gap-3">
             {user && (
               <>
+                <SchoolSwitcher />
                 <div className="hidden md:flex items-center gap-2 px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg">
                   <div className="w-8 h-8 rounded-full flex items-center justify-center text-white font-semibold" style={{ backgroundColor: school.primaryColor }}>
                     {user.name.charAt(0).toUpperCase()}

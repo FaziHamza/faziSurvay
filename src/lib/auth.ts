@@ -1,12 +1,8 @@
 import type { User, AuthToken, Role } from '../types';
+import { multiSchoolStorage } from './multiSchoolStorage';
+import { schoolAuth } from './schoolAuth';
 
 const AUTH_KEY = 'auth_token';
-
-const mockUsers = [
-  { id: '1', email: 'admin@school.edu', password: 'admin123', name: 'Admin User', role: 'admin' as Role },
-  { id: '2', email: 'teacher@school.edu', password: 'teacher123', name: 'Teacher User', role: 'teacher' as Role },
-  { id: '3', email: 'viewer@school.edu', password: 'viewer123', name: 'Viewer User', role: 'viewer' as Role },
-];
 
 function generateMockJWT(user: User): string {
   const header = { alg: 'HS256', typ: 'JWT' };
@@ -15,6 +11,7 @@ function generateMockJWT(user: User): string {
     email: user.email,
     name: user.name,
     role: user.role,
+    schoolId: user.schoolId,
     iat: Date.now(),
     exp: Date.now() + 24 * 60 * 60 * 1000,
   };
@@ -40,19 +37,19 @@ function decodeJWT(token: string): any {
 
 export const auth = {
   login: (email: string, password: string): AuthToken | null => {
-    const user = mockUsers.find(u => u.email === email && u.password === password);
+    const activeSchoolId = multiSchoolStorage.getActiveSchoolId();
+    const user = schoolAuth.validateCredentials(email, password, activeSchoolId);
 
     if (!user) {
       return null;
     }
 
-    const { password: _, ...userWithoutPassword } = user;
-    const token = generateMockJWT(userWithoutPassword);
+    const token = generateMockJWT(user);
     const expiresAt = Date.now() + 24 * 60 * 60 * 1000;
 
     const authToken: AuthToken = {
       token,
-      user: userWithoutPassword,
+      user,
       expiresAt,
     };
 
@@ -78,6 +75,12 @@ export const auth = {
 
       const payload = decodeJWT(authToken.token);
       if (!payload) {
+        auth.logout();
+        return null;
+      }
+
+      const activeSchoolId = multiSchoolStorage.getActiveSchoolId();
+      if (authToken.user.schoolId !== activeSchoolId) {
         auth.logout();
         return null;
       }
@@ -121,5 +124,8 @@ export const auth = {
     return user ? roles.includes(user.role) : false;
   },
 
-  getMockUsers: () => mockUsers.map(({ password, ...user }) => user),
+  getMockUsers: () => {
+    const activeSchoolId = multiSchoolStorage.getActiveSchoolId();
+    return schoolAuth.getUsersBySchool(activeSchoolId);
+  },
 };

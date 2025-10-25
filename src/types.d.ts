@@ -5,6 +5,9 @@ export interface User {
   email: string;
   name: string;
   role: Role;
+  schoolId: string;
+  password?: string;
+  createdAt: string;
 }
 
 export interface AuthToken {

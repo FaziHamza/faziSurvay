@@ -1,7 +1,8 @@
 import { useNavigate } from 'react-router-dom';
-import { Palette, Upload, FileText, Eye, TrendingUp, Users, Calendar, Database, Building2 } from 'lucide-react';
+import { Palette, Upload, FileText, Eye, TrendingUp, Users, Calendar, Database, Building2, UserCog } from 'lucide-react';
 import { storage } from '../lib/storage';
 import { auth } from '../lib/auth';
+import { schoolAuth } from '../lib/schoolAuth';
 import { DemoGuide } from '../components/DemoGuide';
 import { multiSchoolStorage } from '../lib/multiSchoolStorage';
 
@@ -18,6 +19,7 @@ export function Dashboard() {
   const recentResponses = responses.slice(-5).reverse();
 
   const schools = multiSchoolStorage.getAllSchools();
+  const schoolUsers = schoolAuth.getUsersBySchool(multiSchoolStorage.getActiveSchoolId());
 
   const adminCards = [
     {
@@ -27,6 +29,14 @@ export function Dashboard() {
       color: '#ec4899',
       path: '/schools',
       stats: `${schools.length} ${schools.length === 1 ? 'school' : 'schools'}`,
+    },
+    {
+      title: 'User Management',
+      description: 'Manage users and access control',
+      icon: UserCog,
+      color: '#8b5cf6',
+      path: '/users',
+      stats: `${schoolUsers.length} ${schoolUsers.length === 1 ? 'user' : 'users'}`,
     },
     {
       title: 'Branding',

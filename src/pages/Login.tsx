@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LogIn, AlertCircle } from 'lucide-react';
+import { LogIn, AlertCircle, Building2 } from 'lucide-react';
 import { auth } from '../lib/auth';
 import { storage } from '../lib/storage';
+import { multiSchoolStorage } from '../lib/multiSchoolStorage';
 
 export function Login() {
   const [email, setEmail] = useState('');
@@ -11,6 +12,7 @@ export function Login() {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const school = storage.getSchool();
+  const activeSchool = multiSchoolStorage.getActiveSchool();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -133,6 +135,12 @@ export function Login() {
           </div>
 
           <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+            <div className="flex items-center gap-2 mb-2">
+              <Building2 className="w-4 h-4 text-blue-900" />
+              <p className="text-xs text-blue-900 font-medium">
+                Logging in to: {activeSchool.name}
+              </p>
+            </div>
             <p className="text-xs text-blue-900 font-medium mb-2">Demo Credentials:</p>
             <ul className="text-xs text-blue-800 space-y-1">
               <li>Admin: admin@school.edu / admin123</li>

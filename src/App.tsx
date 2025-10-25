@@ -5,6 +5,7 @@ import { Login } from './pages/Login';
 import { Dashboard } from './pages/Dashboard';
 import { AdminBranding } from './pages/AdminBranding';
 import { SchoolManagement } from './pages/SchoolManagement';
+import { UserManagement } from './pages/UserManagement';
 import { Uploads } from './pages/Uploads';
 import { SurveyBuilder } from './pages/SurveyBuilder';
 import { PreviewPortal } from './pages/PreviewPortal';
@@ -50,6 +51,14 @@ function App() {
                     element={
                       <ProtectedRoute allowedRoles={['admin']}>
                         <SchoolManagement />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/users"
+                    element={
+                      <ProtectedRoute allowedRoles={['admin']}>
+                        <UserManagement />
                       </ProtectedRoute>
                     }
                   />

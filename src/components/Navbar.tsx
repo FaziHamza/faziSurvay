@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Palette, Upload, FileText, Eye, LogOut, User, Menu, X, Home, Database, Building2 } from 'lucide-react';
+import { Palette, Upload, FileText, Eye, LogOut, Users, Menu, X, Home, Database, Building2 } from 'lucide-react';
 import { useState } from 'react';
 import { storage } from '../lib/storage';
 import { auth } from '../lib/auth';
@@ -16,6 +16,7 @@ export function Navbar() {
   const navItems = [
     { path: '/dashboard', label: 'Dashboard', icon: Home, roles: ['admin', 'teacher', 'viewer'] },
     { path: '/schools', label: 'Schools', icon: Building2, roles: ['admin'] },
+    { path: '/users', label: 'Users', icon: Users, roles: ['admin'] },
     { path: '/admin', label: 'Branding', icon: Palette, roles: ['admin'] },
     { path: '/uploads', label: 'Uploads', icon: Upload, roles: ['admin', 'teacher'] },
     { path: '/survey-builder', label: 'Surveys', icon: FileText, roles: ['admin', 'teacher'] },

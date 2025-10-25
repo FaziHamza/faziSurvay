@@ -13,40 +13,18 @@ Welcome to the School Portal MVP! This is a fully functional, demo-ready applica
    Open your browser to `http://localhost:5173`
 
 3. **Choose a role to demo:**
-   - **Super Admin:** `superadmin@portal.com` / `super123` (Manages multiple schools)
    - Admin: `admin@school.edu` / `admin123`
    - Teacher: `teacher@school.edu` / `teacher123`
    - Viewer: `viewer@school.edu` / `viewer123`
 
 ## 🎬 Screencast Demo Flow
 
-### 1. Super Admin - Multi-School Management (4 minutes)
-**Login as Super Admin**
-
-- Lands on **School Management** page
-- View existing school(s) with statistics:
-  - Number of surveys, files, and responses per school
-  - Active school indicator
-- Click "Create School" button
-- Fill in new school details:
-  - Name: "Lincoln Academy"
-  - Tagline: "Inspiring Excellence Since 1995"
-  - Upload or select logo
-  - Choose color scheme (e.g., Forest Green)
-- Save the new school
-- Show the new school card with 0 surveys, files, responses
-- Click "Switch To" button on the new school
-- Page reloads with the new school's branding
-- Navigate back to School Management
-- Switch back to Riverside High School
-- Show data isolation (different schools have different data)
-
-### 2. Role-Based Login (2 minutes)
+### 1. Role-Based Login (2 minutes)
 - Show the login page with school branding
 - Use quick login buttons to demonstrate all three roles
 - Show how each role has different navigation menus
 
-### 3. Admin - Branding Customization (3 minutes)
+### 2. Admin - Branding Customization (3 minutes)
 **Login as Admin**
 
 - Navigate to **Branding** page
@@ -57,14 +35,14 @@ Welcome to the School Portal MVP! This is a fully functional, demo-ready applica
 - Save changes
 - Show how branding applies throughout the entire app
 
-### 4. Admin - File Management (2 minutes)
+### 3. Admin - File Management (2 minutes)
 - Navigate to **Uploads** page
 - Click "Choose Files" to upload demo files
 - Show uploaded files list with icons
 - Download a file to demonstrate retrieval
 - Delete a file to show management capabilities
 
-### 5. Admin - Survey Creation (3 minutes)
+### 4. Admin - Survey Creation (3 minutes)
 - Navigate to **Survey Builder**
 - Click "Create Survey"
 - Add survey details:
@@ -79,13 +57,13 @@ Welcome to the School Portal MVP! This is a fully functional, demo-ready applica
 - Publish the survey
 - Show the survey in the list with response count
 
-### 6. Admin - Preview Mode (2 minutes)
+### 5. Admin - Preview Mode (2 minutes)
 - Navigate to **Portal** page
 - Toggle "Preview Mode" to show draft content
 - Show published vs draft surveys
 - Explain this is what users see
 
-### 7. Teacher Role (2 minutes)
+### 6. Teacher Role (2 minutes)
 **Logout and login as Teacher**
 
 - Show Dashboard with teacher-specific features
@@ -94,7 +72,7 @@ Welcome to the School Portal MVP! This is a fully functional, demo-ready applica
 - Click "Responses" to view submitted survey answers
 - Show anonymous vs identified responses
 
-### 8. Viewer - Taking Surveys (3 minutes)
+### 7. Viewer - Taking Surveys (3 minutes)
 **Logout and login as Viewer**
 
 - Navigate to **Portal** page
@@ -104,7 +82,7 @@ Welcome to the School Portal MVP! This is a fully functional, demo-ready applica
 - Fill out the survey
 - Submit and show confirmation
 
-### 9. Admin - View Responses (2 minutes)
+### 8. Admin - View Responses (2 minutes)
 **Logout and login as Admin**
 
 - Navigate to **Survey Builder**
@@ -113,14 +91,14 @@ Welcome to the School Portal MVP! This is a fully functional, demo-ready applica
 - Point out anonymous responses
 - Show response timestamps and details
 
-### 10. Data Management (2 minutes)
+### 9. Data Management (2 minutes)
 - Navigate to **Data Management** page
 - Show storage statistics
 - Export all data as JSON
 - Explain import functionality
 - Show the "Clear All Data" option (don't click it!)
 
-### 11. Smooth Navigation Demo (1 minute)
+### 10. Smooth Navigation Demo (1 minute)
 - Show the sticky navigation bar
 - Demonstrate mobile responsive menu
 - Switch between pages smoothly
@@ -141,16 +119,8 @@ Welcome to the School Portal MVP! This is a fully functional, demo-ready applica
 - ✅ 4 template styles
 - ✅ Applied throughout entire app
 
-### Multi-School Management
-- ✅ Super Admin can create multiple schools
-- ✅ Each school has isolated data storage
-- ✅ Easy switching between school portals
-- ✅ Each school has independent branding
-- ✅ Statistics per school (surveys, files, responses)
-
 ### Role-Based Access
-- ✅ Super Admin: Create and manage multiple schools
-- ✅ Admin: Full access to school features
+- ✅ Admin: Full access to all features
 - ✅ Teacher: Survey and file management
 - ✅ Viewer: Portal access and survey submission
 
@@ -201,15 +171,12 @@ The application comes pre-loaded with:
 
 ## 💾 Data Persistence
 
-All data is stored in `localStorage` with multi-school support:
-- `all_schools` - List of all school instances
-- `current_school_id` - Active school identifier
-- `school_<id>_surveys` - Surveys for each school
-- `school_<id>_files` - Files for each school (base64)
-- `school_<id>_responses` - Survey responses for each school
+All data is stored in `localStorage`:
+- `school_data` - Branding and school info
+- `surveys_data` - All surveys
+- `files_data` - Uploaded files (base64)
+- `survey_responses` - All survey submissions
 - `auth_token` - User session
-
-**Data Isolation:** Each school's data is completely separated and cannot be accessed by other schools.
 
 ## 🚀 Production Ready Features
 
@@ -223,11 +190,9 @@ All data is stored in `localStorage` with multi-school support:
 
 ## 📝 Talking Points for Demo
 
-1. **"Multi-school platform with no backend"**
-   - Supports multiple school instances
-   - Each school has isolated data
+1. **"This is a complete MVP that requires no backend"**
    - Everything runs in the browser
-   - Perfect for pilot testing multiple schools
+   - Perfect for pilot testing
    - Easy to deploy anywhere
 
 2. **"Role-based access control"**
@@ -257,9 +222,9 @@ All data is stored in `localStorage` with multi-school support:
 
 ## 🎥 Estimated Demo Time
 
-- Quick demo: 15 minutes
-- Comprehensive demo: 25 minutes
-- Full feature walkthrough (with multi-school): 35 minutes
+- Quick demo: 10 minutes
+- Comprehensive demo: 20 minutes
+- Full feature walkthrough: 30 minutes
 
 ## 🐛 Known Limitations (By Design)
 

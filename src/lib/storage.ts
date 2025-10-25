@@ -1,5 +1,5 @@
 import type { School, Survey, UploadedFile, SurveyResponse } from '../types';
-import { mockSchool, mockSurveys, mockFiles, mockResponses } from '../data/mockData';
+import { mockSchool, mockSurveys, mockFiles } from '../data/mockData';
 
 const SCHOOL_KEY = 'school_data';
 const SURVEYS_KEY = 'surveys_data';
@@ -17,7 +17,7 @@ function initializeStorage() {
     localStorage.setItem(FILES_KEY, JSON.stringify(mockFiles));
   }
   if (!localStorage.getItem(RESPONSES_KEY)) {
-    localStorage.setItem(RESPONSES_KEY, JSON.stringify(mockResponses));
+    localStorage.setItem(RESPONSES_KEY, JSON.stringify([]));
   }
 }
 

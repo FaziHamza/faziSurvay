@@ -1,4 +1,4 @@
-import type { School, Survey, UploadedFile } from '../types';
+import type { School, Survey, UploadedFile, SurveyResponse } from '../types';
 
 export const mockSchool: School = {
   name: 'Riverside High School',
@@ -137,5 +137,63 @@ export const mockFiles: UploadedFile[] = [
     url: '#',
     size: 456780,
     uploadedAt: '2025-10-05T09:00:00Z',
+  },
+];
+
+export const mockResponses: SurveyResponse[] = [
+  {
+    id: 'r1',
+    surveyId: '1',
+    respondentId: '2',
+    respondentName: 'Teacher User',
+    isAnonymous: false,
+    answers: {
+      q1: '5',
+      q2: 'Science',
+      q3: 'Yes',
+      q4: 'More hands-on lab activities would be beneficial.',
+    },
+    submittedAt: '2025-10-20T14:30:00Z',
+  },
+  {
+    id: 'r2',
+    surveyId: '1',
+    respondentId: null,
+    respondentName: null,
+    isAnonymous: true,
+    answers: {
+      q1: '4',
+      q2: 'Math',
+      q3: 'Yes',
+      q4: 'Better cafeteria food options.',
+    },
+    submittedAt: '2025-10-19T11:20:00Z',
+  },
+  {
+    id: 'r3',
+    surveyId: '2',
+    respondentId: '3',
+    respondentName: 'Viewer User',
+    isAnonymous: false,
+    answers: {
+      q1: '5',
+      q2: 'Weekly',
+      q3: 'A mobile app would be great!',
+    },
+    submittedAt: '2025-10-18T09:15:00Z',
+  },
+  {
+    id: 'r4',
+    surveyId: '1',
+    respondentId: null,
+    respondentName: null,
+    isAnonymous: true,
+    answers: {
+      q1: '4',
+      q2: 'English',
+      q3: 'Yes',
+      q4: '',
+    },
+    submittedAt: '2025-10-17T16:45:00Z',
   },
 ];

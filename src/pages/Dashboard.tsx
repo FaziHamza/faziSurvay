@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { Palette, Upload, FileText, Eye, TrendingUp, Users, Calendar, Database } from 'lucide-react';
 import { storage } from '../lib/storage';
 import { auth } from '../lib/auth';
+import { DemoGuide } from '../components/DemoGuide';
 
 export function Dashboard() {
   const navigate = useNavigate();
@@ -99,7 +100,9 @@ export function Dashboard() {
   const cards = user?.role === 'admin' ? adminCards : user?.role === 'teacher' ? teacherCards : viewerCards;
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4">
+    <>
+      <DemoGuide />
+      <div className="min-h-screen bg-gray-50 py-8 px-4">
       <div className="max-w-7xl mx-auto">
         <div
           className="bg-gradient-to-r text-white rounded-2xl shadow-lg p-8 mb-8"
@@ -223,5 +226,6 @@ export function Dashboard() {
         )}
       </div>
     </div>
+    </>
   );
 }
